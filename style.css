@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,400;1,500;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100&display=swap');
+
+:root {
+    --off-color: red;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  .mainNav h1 span {
+    display: inline-block;
+    transform: scaleX(-1);
+    color: var(--off-color);
+  }
+  .mainNav > * {
+    margin: 0;
+  }
+  @media screen and (min-width: 700px) {
+    .mainNav {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  .mainNav h1 {
+    margin-right: auto;
+  }
+
+
+ 
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Barlow', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+margin: 0px;
+padding: 0px;
+font-family: 'Barlow', sans-serif;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* navigation bar */
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    margin: auto;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.menu {
+    display: flex;
+
+}
+
+.menu li a{
+    margin: 5px;
+    padding: 5px 20px;
+    color: #2e2e2e;
+    font-weight: 500;
+    opacity: 0.4;
+    transition: all ease 0.3s;
+
+}
+
+.menu .active{
+    opacity: 1;
+}
+
+.menu li a:hover{
+    opacity: 1;
+    transition: all ease 0.3s;
+
+}
+
+.logo{
+    font-size: 2.1rem;
+    color: #414141;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+  
+  /*Category*/
+  .letterLinks ol {
+    margin-top: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+  }
+  .brandList ol {
+    list-style-type: none;
+  }
+  .brandList li {
+    border-bottom: 1px solid #d8d8d8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .brandList a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+  .brandList li::after {
+    display: block;
+    width: 20px;
+    height: 20px;
+    content: "";
+    transition: all 0.3s;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 14"><path fill="none" stroke="white" d="M.8 12.87l7.5-6-7.5-6"></path></svg>');
+    background-repeat: no-repeat;
+    /* url('data:image/svg+xml;utf8,<svg class="svg-arrowRight" viewBox="0 0 9 14"><path fill="none" stroke="#979797" d="M.8 12.87l7.5-6-7.5-6"></path></svg>'); */
+  }
+  .brandList li:hover {
+    background: #d8d8d8;
+    transition: transform 0.3s;
+  }
+  .brandList li:hover::after {
+    transform: translateX(8px);
+  }
+  
+  @media screen and (min-width: 800px) {
+    .brandList ol {
+      column-count: 2;
+    }
+  }
+  
+  
+  /*ProductList - THIS IS THE MAIN CONTAINER */
+
+
+
+  .productlist main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 300px));
+    gap: 2rem;
+  }
+  .productlist main h2 {
+    grid-column: 1/-1;
+  }
+  .productlist article h3 {
+    font-size: 1rem;
+    flex-grow: 3;
+  }
+  .productlist article > * {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  .subtle {
+    color: #d8d8d8cc;
+  }
+  .productlist article {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+
+  /* WHEN AN ARTICLE HAS THE SOLD OUT CLASS, TAKE THE IMAGE AND PUT THE OPACITY DOWN. We are kind of using the css as "if" statements */
+
+
+  .productlist article.soldOut img {
+    opacity: 0.5;
+  }
+
+  /* IF THE ARTCILE HAS A CLASS OF SOLDOUT THEN it creates the content down here. It is the small "sold out" box in each sold out picture  */
+
+
+  .productlist article.soldOut::before {
+    content: "Sold Out";
+    position: absolute;
+    background: var(--color);
+    color: var(--background-color);
+    padding: 1rem;
+  }
+
+  /* Lo que estoy diciendo aca es que por default, NO MUESTRE la clase discounted y no muestre el price span (que es un span que dice que tal precio antes era X), SALVO cuando pase lo que digo mas abajo */
+
+  .productlist article .discounted,
+  .productlist article .price span {
+    display: none;
+  }
+
+    /* Aca abajo lo que digo es: Pero cuando el producto esta ON SALE, agarro la class discounted, hago display flex para que se vea en un cuadrito rojo  */
+
+
+  .productlist article.onSale .discounted {
+    display: flex;
+    justify-content: space-between;
+  }
+  .discounted > p {
+    margin-bottom: 0;
+  }
+ /* Aca abajo lo que digo es: Lo mismo, cuando la clase sea on sale y tambien tenga price span, ahi si lo muestro diciendo "display initial" que significa que entonces lo muestro con el valor inicial osea normal.  */
+
+  .productlist article.onSale .price span {
+    display: initial;
+  }
+  .productlist article button {
+    margin-top: auto;
+  }
+  .productlist article {
+    margin-bottom: 1rem;
+  }
+  .discounted p:last-child {
+    background: var(--off-color);
+    padding: 0.2rem;
+  }
+  
+  /*Product*/
+  .breadcrumbs {
+    list-style-type: none;
+    display: flex;
+  }
+  .breadcrumbs li::after {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 10px;
+    content: "";
+    transition: all 0.3s;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 14"><path fill="none" stroke="white" d="M.8 12.87l7.5-6-7.5-6"></path></svg>');
+    background-repeat: no-repeat;
+    /* url('data:image/svg+xml;utf8,<svg class="svg-arrowRight" viewBox="0 0 9 14"><path fill="none" stroke="#979797" d="M.8 12.87l7.5-6-7.5-6"></path></svg>'); */
+  }
+  .breadcrumbs li:last-child::after {
+    background: none;
+  }
+  .purchaseBox {
+    background: #d8d8d8;
+    color: var(--background-color);
+    padding: 1rem;
+  }
+  .info {
+    padding: 1rem;
+  }
+  .product select {
+    min-width: 100px;
+  }
+  .product main {
+    display: grid;
+  }
+  .product main .breadcrumbs,
+  .product main img {
+    grid-column: 1/-1;
+  }
+  .purchaseBox form label {
+    gap: 1rem;
+  }
+  .purchaseBox button {
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  dt {
+    font-weight: 700;
+  }
+  @media screen and (min-width: 1000px) {
+    .product main {
+      grid-template-columns: 1fr 310px;
+    }
+    .info {
+      order: 0;
+    }
+    .purchaseBox {
+      order: 2;
+      transform: translate(-50px, -100px);
+    }
+  }
+  
